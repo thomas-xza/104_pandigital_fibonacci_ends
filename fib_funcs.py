@@ -58,7 +58,11 @@ def check_set(fib_set: tuple[int]) -> bool:
 
     for v in fib_set:
 
-        if v != 0:
+        if v == 0:
+
+            return False
+
+        else:
 
             print(counter, v, counter[v])
 
