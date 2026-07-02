@@ -44,17 +44,25 @@ def check_f_n(fib_sets: tuple[tuple[int]]) -> bool:
     return True
     
 
-def check_set(set: tuple[int]) -> bool:
+def check_set(fib_set: tuple[int]) -> bool:
 
     counter = { 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0 }
 
-    for i in set:
+    for v in fib_set:
 
-        if i != 0:
+        print(v)
 
-            counter[i] += 1
+        print(counter[1])
 
-            if counter[i] > 1:
+        print(counter[v])
+
+        if v != 0:
+
+            print(counter, v, counter[v])
+
+            counter[v] = counter[v] + 1
+
+            if counter[v] > 1:
 
                 return False
 
