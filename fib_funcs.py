@@ -5,16 +5,22 @@ def main():
     found_double_pandigital = False
 
     fib_seq = (1, 1)
+
+    k = 2
     
     while found_double_pandigital == False:
 
+        k += 1
+
         fib_seq = gen_next_fibonacci(fib_seq)
 
-        print(fib_seq[1])
+        # print(fib_seq[1])
 
         found_double_pandigital = check_f_n(
             convert_f_n_to_sets(fib_seq[1])
-            )        
+            )
+
+    print(k)
 
 
 def gen_next_fibonacci(prev_fns: tuple[int]) -> tuple[int]:
@@ -54,7 +60,7 @@ def check_set(fib_set: tuple[int]) -> bool:
 
     counter = { 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0 }
 
-    print(fib_set)
+    # print(fib_set)
 
     for v in fib_set:
 
@@ -64,7 +70,7 @@ def check_set(fib_set: tuple[int]) -> bool:
 
         else:
 
-            print(counter, v, counter[v])
+            # print(counter, v, counter[v])
 
             counter[v] = counter[v] + 1
 
