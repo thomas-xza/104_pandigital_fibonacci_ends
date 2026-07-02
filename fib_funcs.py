@@ -26,7 +26,13 @@ def convert_f_n_to_sets(fib: int) -> tuple[tuple[int]]:
 
     fib_chars = list(str(fib))
 
-    return (fib_chars)[0:9], (fib_chars[-9:])
+    fib_xs = [0 for i in range(len(fib_chars))]
+
+    for i, v in enumerate(fib_chars):
+
+        fib_xs[i] = int(v)
+
+    return (fib_xs)[0:9], (fib_xs[-9:])
 
 
 def check_f_n(fib_sets: tuple[tuple[int]]) -> bool:
@@ -48,13 +54,9 @@ def check_set(fib_set: tuple[int]) -> bool:
 
     counter = { 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0 }
 
+    print(fib_set)
+
     for v in fib_set:
-
-        print(v)
-
-        print(counter[1])
-
-        print(counter[v])
 
         if v != 0:
 
