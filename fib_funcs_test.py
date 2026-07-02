@@ -44,7 +44,25 @@ class Test_104(unittest.TestCase):
 
         self.assertEqual(len(convert_f_n_to_sets(12345678987654321)[0]), 9)
         self.assertEqual(len(convert_f_n_to_sets(12345678987654321)[1]), 9)
+        self.assertEqual(len(convert_f_n_to_sets(1)[0]), 1)
+        self.assertEqual(len(convert_f_n_to_sets(1)[1]), 1)
     
 
+    def test_check_f_n(self):
+
+        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,9), (1,2,3,4,5,6,7,8,9))), True)
+        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,8), (2,3,4,5,6,7,8,8,8))), False)
+        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,9), (1,2,3,4,5,6,7,8,8))), False)
+        self.assertEqual(check_f_n(((1,), (1,))), False)
+        
+
+    def test_check_set(self):
+
+        self.assertEqual(check_set((1,2,3,4,5,6,7,8,9)), True)
+        self.assertEqual(check_set((1,2,3,4,5,6,7,8,8)), False)
+        self.assertEqual(check_set((1,1,2,3,4,5,6,7,8)), False)
+        
+        
+        
 if __name__ == '__main__':
     unittest.main()
