@@ -10,6 +10,8 @@ def main():
 
         fib_seq = gen_next_fibonacci(fib_seq)
 
+        print(fib_seq[1])
+
         found_double_pandigital = check_f_n(
             convert_f_n_to_sets(fib_seq[1])
             )        
@@ -48,11 +50,13 @@ def check_set(set: tuple[int]) -> bool:
 
     for i in set:
 
-        counter[i] += 1
+        if i != 0:
 
-        if counter[i] > 1:
+            counter[i] += 1
 
-            return False
+            if counter[i] > 1:
+
+                return False
 
     return True
 
