@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# import unittest
+import unittest
 
 # gen_next_fibonacci()
 
@@ -23,6 +23,8 @@
 
 # - set of expected length for which true is expected
 # - set of expected length for which false is expected
+
+import fib_funcs
 
 
 class Test_104(unittest.TestCase):
