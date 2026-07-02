@@ -35,14 +35,15 @@ class Test_104(unittest.TestCase):
 
     def test_gen_next_fibonacci(self):
 
-        self.assertEqual(gen_next_fibonacci((1, 1)), 2)
-        self.assertEqual(gen_next_fibonacci((1, 2)), 3)
-        self.assertEqual(gen_next_fibonacci((2, 3)), 5)
+        self.assertEqual(gen_next_fibonacci((1, 1)), (1, 2))
+        self.assertEqual(gen_next_fibonacci((1, 2)), (2, 3))
+        self.assertEqual(gen_next_fibonacci((2, 3)), (3, 5))
 
 
     def test_convert_f_n_to_set(self):
 
-        pass
+        self.assertEqual(len(convert_f_n_to_sets(12345678987654321)[0]), 9)
+        self.assertEqual(len(convert_f_n_to_sets(12345678987654321)[1]), 9)
     
 
 if __name__ == '__main__':
