@@ -6,7 +6,7 @@ sys.set_int_max_str_digits(64000)
 
 
 
-def find_pandigitals():
+def find_pandigitals(limit: int):
 
     found_double_pandigital = False
 
@@ -14,7 +14,7 @@ def find_pandigitals():
 
     k = 2
     
-    while found_double_pandigital == False:
+    while found_double_pandigital == False and k < limit:
 
         k += 1
 
@@ -98,4 +98,4 @@ def check_set(fib_set: tuple[int]) -> bool:
 
 if __name__ == '__main__':
     
-    find_pandigitals()
+    find_pandigitals(2 ** 128)
