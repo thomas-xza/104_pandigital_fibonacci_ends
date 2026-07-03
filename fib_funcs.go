@@ -20,6 +20,8 @@ import (
 
 
 func main() {
+
+     fmt.Println("main()")
   
 	//  Allocate memory for large integer, via binary left shifting.
   
@@ -39,13 +41,13 @@ func findPandigitals(limit *big.Int) {
 	f1 := big.NewInt(1)
 	f2 := big.NewInt(1)
   
-	k := 2
+	k := big.NewInt(2)
 
 	for !found && k.Cmp(limit) < 0 {
 
     //  Generate next Fibonacci number and increment k of F_k.
-    
-		k++
+
+		k.Add(k, big.NewInt(1))
   
 		f1, f2 = f2, new(big.Int).Add(f1, f2)
 
@@ -60,6 +62,8 @@ func findPandigitals(limit *big.Int) {
 		res := checkFN(first9, last9)
 
 		if res[0] || res[1] {
+      
+			// fmt.Printf("%d %v\n", k, res, fibStr)
       
 			fmt.Printf("%d %v\n", k, res)
       
