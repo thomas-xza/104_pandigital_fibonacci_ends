@@ -1,0 +1,11 @@
+
+def main():
+
+    for i in range(0, 429000):
+
+        print(i)
+
+        j = i * i
+
+
+main()

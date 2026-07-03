@@ -67,10 +67,27 @@ Tests
 - set of expected length for which false is expected
 
 
-Results
--------
+Progress
+--------
 
 After 1 bugfix related to a type error, when both fib_funcs.py and
 fib_funcs.go are initialised at the same time, output of both
 implementations is identical - see `res_compare.sh`.
 
+However, though faster, the Go implementation is too slow for the
+intended purpose! A multi-core implementation would allow an n speed,
+where n is the quantity of cores.
+
+It seems unlikely there would be a pattern among the k sequence, as
+the Fibonacci numbers do not appear to follow any obvious number base
+(e.g. base 2, base 10).
+
+The most computationally intensive part would seemingly be the adding
+of the previous 2 Fibonacci numbers.
+
+
+Solution
+--------
+
+The Go implementation is able to derive the solution within a
+reasonable amount of time.
