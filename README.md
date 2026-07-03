@@ -16,7 +16,7 @@ quantity of 3, maximum).
 The data structure used to check each set of 9 sequential numbers within one Fibonacci number 
 number will be initialised as follows:
 
-{ 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0 }
+    { 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0 }
 
 A key-value store allows for O(1) lookups.
 
@@ -32,28 +32,28 @@ Implementation
 Idea 1 will be implemented in Python, and converted to Go if too slow. Tests written along the 
 way to ensure Go port works as expected, if needed.
 
-gen_next_fibonacci(prev_fns: tuple[int]) -> tuple[int]
+    gen_next_fibonacci(prev_fns: tuple[int]) -> tuple[int]
 
-convert_f_n_to_sets(fib: int) -> tuple[tuple[int]]
+    convert_f_n_to_sets(fib: int) -> tuple[tuple[int]]
 
-check_f_n(fib_set: tuple[tuple[int]]) -> Bool
+    check_f_n(fib_set: tuple[tuple[int]]) -> Bool
 
-check_set(set: tuple[int]) -> Bool
+    check_set(set: tuple[int]) -> Bool
 
 
 Tests
 -----
 
-gen_next_fibonacci()
+`gen_next_fibonacci()`
 
 - hardcoded expected fibonacci values, based on initial easily-verified sequence
 
-convert_f_n_to_set()
+`convert_f_n_to_set()`
 
 - any number (including non-fibonacci) of length 9+ checks functionality
 - number of length below 9 doesn't need to throw exception
 
-check_f_n()
+`check_f_n()`
 
 - f_n set length too small
 - f_n set length correct, 0 sets are pandigital
@@ -61,9 +61,16 @@ check_f_n()
 - f_n set length correct, 2 sets are pandigital
 
 
-check_set()
+`check_set()`
 
 - set of expected length for which true is expected
 - set of expected length for which false is expected
 
+
+Results
+-------
+
+After 1 bugfix related to a type error, when both fib_funcs.py and
+fib_funcs.go are initialised at the same time, output of both
+implementations is identical - see `res_compare.sh`.
 
