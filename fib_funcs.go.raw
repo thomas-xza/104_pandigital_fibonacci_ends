@@ -1,0 +1,111 @@
+//  ---------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------------
+
+//  THIS IS THE VERBATIM OUTPUT OF GPT-OSS WHEN REQUESTING A GO PORT OF fib_funcs.py
+//  IT WILL NEED NEW COMMENTS AND POTENTIALLY OTHER CHANGES!
+
+//  ---------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------------
+
+// pandigital_fib.go
+// Go version of the Python script that searches for Fibonacci numbers whose
+// first 9 or last 9 digits are 1‑9 pandigital (each digit 1‑9 appears exactly
+// once, no zero).
+
+package main
+
+import (
+	"fmt"
+	"math/big"
+	"os"
+)
+
+func main() {
+	// The original script used a huge limit (2**128).  We keep the same
+	// semantics by using a big.Int limit.
+	limit := new(big.Int).Lsh(big.NewInt(1), 128) // 2**128
+	findPandigitals(limit)
+}
+
+// findPandigitals searches the Fibonacci sequence up to *limit* (exclusive)
+// and prints the index (k) together with a tuple that indicates whether the
+// first‑9 or last‑9 digits are pandigital.
+func findPandigitals(limit *big.Int) {
+	found := false
+	// Fibonacci start: F1 = 1, F2 = 1
+	f1 := big.NewInt(1)
+	f2 := big.NewInt(1)
+
+	// k corresponds to the index of the *current* Fibonacci number (f2).
+	k := 2
+
+	for !found && k.Cmp(limit) < 0 {
+		k++
+		// Generate next Fibonacci number.
+		f1, f2 = f2, new(big.Int).Add(f1, f2)
+
+		// Convert the number to a string once.
+		fibStr := f2.String()
+
+		// Check pandigital condition on first 9 and last 9 digits.
+		first9, last9 := splitDigits(fibStr)
+		res := checkFN(first9, last9)
+
+		if res[0] || res[1] {
+			fmt.Printf("%d %v\n", k, res)
+		}
+	}
+}
+
+// splitDigits returns two slices of ints:
+//   - the first 9 digits of the string (or fewer if the string is short)
+//   - the last 9 digits of the string (or fewer if the string is short)
+func splitDigits(s string) ([]int, []int) {
+	toInts := func(sub string) []int {
+		out := make([]int, len(sub))
+		for i, ch := range sub {
+			out[i] = int(ch - '0')
+		}
+		return out
+	}
+
+	if len(s) <= 9 {
+		return toInts(s), toInts(s)
+	}
+	return toInts(s[:9]), toInts(s[len(s)-9:])
+}
+
+// checkFN evaluates the pandigital condition for the two digit slices.
+// It returns a two‑element bool array where the first element corresponds to
+// the first‑9‑digit set and the second to the last‑9‑digit set.
+func checkFN(first, last []int) [2]bool {
+	return [2]bool{
+		isPandigital(first),
+		isPandigital(last),
+	}
+}
+
+// isPandigital returns true iff the slice contains exactly the digits 1‑9
+// each once (no zero, no repetitions).  The slice must have length 9.
+func isPandigital(digits []int) bool {
+	if len(digits) != 9 {
+		return false
+	}
+	seen := [10]bool{} // index 0‑9, we ignore 0
+	for _, d := range digits {
+		if d == 0 || d > 9 {
+			return false
+		}
+		if seen[d] {
+			return false // duplicate
+		}
+		seen[d] = true
+	}
+	// Ensure all 1‑9 were present.
+	for i := 1; i <= 9; i++ {
+		if !seen[i] {
+			return false
+		}
+	}
+	return true
+}
