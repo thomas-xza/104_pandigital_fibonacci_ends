@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
-def main():
+import sys
+
+sys.set_int_max_str_digits(64000)
+
+
+
+def find_pandigitals():
 
     found_double_pandigital = False
 
@@ -16,11 +22,14 @@ def main():
 
         # print(fib_seq[1])
 
-        found_double_pandigital = check_f_n(
+        pandigital_res = check_f_n(
             convert_f_n_to_sets(fib_seq[1])
             )
 
-    print(k)
+        if pandigital_res[0] == True or pandigital_res[1] == True:
+
+            print(k, pandigital_res)
+
 
 
 def gen_next_fibonacci(prev_fns: tuple[int]) -> tuple[int]:
@@ -47,13 +56,19 @@ def check_f_n(fib_sets: tuple[tuple[int]]) -> bool:
 
         return False
 
-    for fib_set in fib_sets:
+    res = ()
 
-        if len(fib_set) != 9 or check_set(fib_set) == False:
+    for i, fib_set in enumerate(fib_sets):
 
-            return False
+        if len(fib_set) == 9 and check_set(fib_set) == True:
 
-    return True
+            res = res + (True,)
+
+        else:
+
+            res = res + (False,)
+
+    return res
     
 
 def check_set(fib_set: tuple[int]) -> bool:
@@ -83,4 +98,4 @@ def check_set(fib_set: tuple[int]) -> bool:
 
 if __name__ == '__main__':
     
-    main()
+    find_pandigitals()

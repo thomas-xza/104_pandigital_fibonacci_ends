@@ -50,10 +50,10 @@ class Test_104(unittest.TestCase):
 
     def test_check_f_n(self):
 
-        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,9), (1,2,3,4,5,6,7,8,9))), True)
-        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,8), (2,3,4,5,6,7,8,8,8))), False)
-        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,9), (1,2,3,4,5,6,7,8,8))), False)
-        self.assertEqual(check_f_n(((1,), (1,))), False)
+        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,9), (1,2,3,4,5,6,7,8,9))), (True, True))
+        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,8), (2,3,4,5,6,7,8,8,8))), (False, False))
+        self.assertEqual(check_f_n(((1,2,3,4,5,6,7,8,9), (1,2,3,4,5,6,7,8,8))), (True, False))
+        self.assertEqual(check_f_n(((1,), (1,))), (False, False))
         
 
     def test_check_set(self):
