@@ -16,7 +16,6 @@ package main
 import (
 	"fmt"
 	"math/big"
-	"os"
 )
 
 
@@ -73,7 +72,7 @@ func findPandigitals(limit *big.Int) {
 
 func splitDigits(s string) ([]int, []int) {
 
-  //  Go does not have any native string-to-integer conversion, perhaps.
+  //  Go does not have any native string-to-integer-set conversion, perhaps.
   
 	toInts := func(sub string) []int {
 

@@ -14,7 +14,7 @@ def find_pandigitals(limit: int):
 
     k = 2
     
-    while found_double_pandigital == False and k < limit:
+    while found_double_pandigital != (True, True) and k < limit:
 
         k += 1
 
